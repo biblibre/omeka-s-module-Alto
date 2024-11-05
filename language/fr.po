@@ -1,0 +1,69 @@
+# French translations for PACKAGE package.
+# Copyright (C) 2024 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-05 16:56+0100\n"
+"PO-Revision-Date: 2024-11-05 16:56+0100\n"
+"Last-Translator: Julian Maurice <julian.maurice@biblibre.com>\n"
+"Language-Team: none\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.5\n"
+
+#: view/alto/admin/media/section-alto.phtml:12
+msgid "Replace with another ALTO document"
+msgstr "Remplacer par un autre document ALTO"
+
+#: view/alto/admin/media/section-alto.phtml:17
+msgid "Delete this ALTO document"
+msgstr "Supprimer ce document ALTO"
+
+#: view/alto/admin/media/section-alto.phtml:28
+msgid "No ALTO document is attached to this media."
+msgstr "Aucun document ALTO n'est attaché à ce média."
+
+#: view/alto/admin/media/section-alto.phtml:30
+msgid "Attach an ALTO document"
+msgstr "Attacher un document ALTO"
+
+#: view/alto/admin/media/sidebar-attach.phtml:1
+msgid "Attach ALTO to media"
+msgstr "Attacher ALTO au média"
+
+#: Module.php:101
+msgid "ALTO text content"
+msgstr "Contenu texte de ALTO"
+
+#: src/Form/MediaForm.php:16
+msgid "ALTO file"
+msgstr "Fichier ALTO"
+
+#: src/Form/MediaForm.php:28
+msgid "Attach"
+msgstr "Attacher"
+
+#: src/Controller/Admin/MediaController.php:50
+msgid "ALTO document attached"
+msgstr "Document ALTO attaché"
+
+#: src/Controller/Admin/MediaController.php:71
+msgid "ALTO document"
+msgstr "document ALTO"
+
+#: src/Controller/Admin/MediaController.php:88
+msgid "ALTO document deleted"
+msgstr "Document ALTO supprimé"
+
+#~ msgid "ALTO file successfully attached"
+#~ msgstr "Fichier ALTO attaché avec succès"
+
+#~ msgid "ALTO document successfully deleted"
+#~ msgstr "Document ALTO supprimé avec succès"

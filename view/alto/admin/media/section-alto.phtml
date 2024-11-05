@@ -1,0 +1,44 @@
+<?php
+/**
+ * @var Alto\Api\Representation\AltoDocumentRepresentation $altoDocument
+ * @var Omeka\Api\Representation\MediaRepresentation $media
+ */
+?>
+
+<?php $this->headLink()->appendStylesheet($this->assetUrl('css/alto-admin.css', 'Alto')); ?>
+
+<div id="alto" class="section">
+    <?php if ($altoDocument): ?>
+        <?= $this->hyperlink(' ' . $this->translate('Replace with another ALTO document'), '#', [
+            'data-sidebar-selector' => '#alto-sidebar',
+            'data-sidebar-content-url' => $altoDocument->url('sidebar-attach'),
+            'class' => 'o-icon-upload sidebar-content button',
+        ]); ?>
+        <?= $this->hyperlink(' ' . $this->translate('Delete this ALTO document'), '#', [
+            'data-sidebar-selector' => '#alto-sidebar',
+            'data-sidebar-content-url' => $altoDocument->url('delete-confirm'),
+            'class' => 'o-icon-delete sidebar-content button',
+        ]); ?>
+
+        <div class="alto-side-by-side">
+            <textarea rows="20" readonly><?= $this->escapeHtml($altoDocument->xml()) ?></textarea>
+            <textarea rows="20" readonly><?= $this->escapeHtml($altoDocument->text()) ?></textarea>
+        </div>
+    <?php else: ?>
+        <?= $this->translate('No ALTO document is attached to this media.'); ?>
+
+        <?= $this->hyperlink($this->translate('Attach an ALTO document'), '#', [
+            'data-sidebar-selector' => '#alto-sidebar',
+            'data-sidebar-content-url' => $this->url('admin/alto/media-id', ['media-id' => $media->id(), 'action' => 'sidebar-attach']),
+            'class' => 'sidebar-content',
+        ]); ?>
+    <?php endif; ?>
+
+    <div id="alto-sidebar" class="sidebar">
+        <?php echo $this->hyperlink('', '#', [
+            'class' => 'sidebar-close o-icon-close',
+            'title' => $this->translate('Close'),
+        ]); ?>
+        <div class="sidebar-content"></div>
+    </div>
+</div>

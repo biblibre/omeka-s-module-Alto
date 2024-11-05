@@ -1,0 +1,16 @@
+<?php
+/**
+ * @var Omeka\Api\Representation\MediaRepresentation $media
+ */
+?>
+
+<?php $this->headLink()->appendStylesheet($this->assetUrl('css/alto-site.css', 'Alto')); ?>
+<?php $altoDocument = $this->api()->searchOne('alto_documents', ['media_id' => $media->id()])->getContent(); ?>
+<?php if ($altoDocument): ?>
+    <dl class="alto-text">
+        <div class="property">
+            <dt><?= $this->escapeHtml($this->translate('ALTO text content')) ?></dt>
+            <dd class="value"><?= $this->escapeHtml($altoDocument->text()) ?></dd>
+        </div>
+    </dl>
+<?php endif; ?>

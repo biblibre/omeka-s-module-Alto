@@ -1,0 +1,11 @@
+#alto textarea {
+    white-space: pre;
+    resize: vertical;
+    width: 100%;
+}
+
+.alto-side-by-side {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+}
