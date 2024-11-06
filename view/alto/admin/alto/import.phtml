@@ -1,0 +1,9 @@
+<?= $this->pageTitle($this->translate('ALTO import')) ?>
+
+<?php $form->prepare(); ?>
+<?= $this->form()->openTag($form) ?>
+<div id="page-actions">
+    <button><?= $this->translate('Start import') ?></button>
+</div>
+<?= $this->formCollection($form) ?>
+<?= $this->form()->closeTag() ?>

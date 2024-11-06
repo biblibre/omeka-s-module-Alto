@@ -12,6 +12,9 @@ return [
         'invokables' => [
             'Alto\Controller\Admin\Media' => Controller\Admin\MediaController::class,
         ],
+        'factories' => [
+            'Alto\Controller\Admin\Alto' => Service\Controller\Admin\AltoControllerFactory::class,
+        ],
     ],
     'entity_manager' => [
         'mapping_classes_paths' => [
@@ -19,6 +22,17 @@ return [
         ],
         'proxy_paths' => [
             dirname(__DIR__) . '/data/doctrine-proxies',
+        ],
+    ],
+    'navigation' => [
+        'AdminModule' => [
+            [
+                'label' => 'ALTO import', // @translate
+                'class' => 'alto-import',
+                'route' => 'admin/alto/import',
+                'resource' => 'Alto\Controller\Admin\Alto',
+                'privilege' => 'import',
+            ],
         ],
     ],
     'resource_page_block_layouts' => [
@@ -45,6 +59,16 @@ return [
                                     'route' => '/media/:media-id/:action',
                                     'defaults' => [
                                         'controller' => 'media',
+                                    ],
+                                ],
+                            ],
+                            'import' => [
+                                'type' => \Laminas\Router\Http\Literal::class,
+                                'options' => [
+                                    'route' => '/import',
+                                    'defaults' => [
+                                        'controller' => 'alto',
+                                        'action' => 'import',
                                     ],
                                 ],
                             ],
