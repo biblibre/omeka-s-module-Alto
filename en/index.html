@@ -1,0 +1,199 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alto (Omeka S module) &mdash; Alto  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=e9c544c0" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Attach ALTO to a media" href="user/attach-alto.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            Alto
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User manual</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="user/attach-alto.html">Attach ALTO to a media</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/resource-page-block.html">Resource page block</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/solr.html">Integration with Solr</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Alto</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Alto (Omeka S module)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="alto-omeka-s-module">
+<h1>Alto (Omeka S module)<a class="headerlink" href="#alto-omeka-s-module" title="Link to this heading"></a></h1>
+<p>This Omeka S module allows to attach ALTO (XML) files to media. The ALTO
+content can then be used in several ways (for display, search, …).</p>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Omeka S ≥ 3.2.0 (or ≥ 4.0.0 if you need resource page blocks)</p></li>
+<li><p>For search capabilities, modules
+<a class="reference external" href="https://github.com/biblibre/omeka-s-module-Search">Search</a> and
+<a class="reference external" href="https://github.com/biblibre/omeka-s-module-Solr">Solr</a></p></li>
+</ul>
+</section>
+<section id="quick-start">
+<h2>Quick start<a class="headerlink" href="#quick-start" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://omeka.org/s/docs/user-manual/modules/#adding-modules-to-omeka-s">Install the
+module</a></p></li>
+<li><p>In the admin interface, on a media page there is a new tab “ALTO”.
+Click the tab, then click on “Attach an ALTO document”. In the
+sidebar, select an ALTO file and submit the form.</p></li>
+<li><p>To learn how to exploit ALTO files (display, search, …), go to the table
+of contents at the end of this page.</p></li>
+</ol>
+</section>
+<section id="features">
+<h2>Features<a class="headerlink" href="#features" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Import ALTO files one by one or by batch</p></li>
+<li><p>Resource page block rendering ALTO content as plain text (requires
+Omeka S ≥ 4.0.0)</p></li>
+<li><p>Integration with the
+<a class="reference external" href="https://github.com/biblibre/omeka-s-module-Solr">Solr</a> module
+(makes the ALTO plain text content searchable)</p></li>
+</ul>
+</section>
+<section id="caveats-known-problems">
+<h2>Caveats / Known problems<a class="headerlink" href="#caveats-known-problems" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Batch import is very limited at the moment: it requires that the ALTO
+file has the same basename than the media filename (for instance,
+<code class="docutils literal notranslate"><span class="pre">PAGE0001.png</span></code> and <code class="docutils literal notranslate"><span class="pre">PAGE00001.xml</span></code>). This should change in a
+future version</p></li>
+</ul>
+</section>
+<section id="how-to-contribute">
+<h2>How to contribute<a class="headerlink" href="#how-to-contribute" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>If you found a bug or want to suggest a new feature, please <a class="reference external" href="https://github.com/biblibre/omeka-s-module-Alto/issues/new">open an
+issue</a>.</p></li>
+<li><p>If you made a modification to the module (bugfix, enhancement, …)
+and want to make it available to everyone, <a class="reference external" href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request">open a pull
+request</a>.
+To increase its chances of being reviewed and merged, please keep the
+pull request small:</p>
+<ul>
+<li><p>only one change per pull request (eg. do not mix a bugfix with a
+new feature),</p></li>
+<li><p>include only necessary changes (eg. no code style changes)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="contributors-sponsors">
+<h2>Contributors / Sponsors<a class="headerlink" href="#contributors-sponsors" title="Link to this heading"></a></h2>
+<p>This module was sponsored by:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://mediatheques.orleans.fr/">Médiathèques d’Orléans</a></p></li>
+</ul>
+</section>
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Link to this heading"></a></h2>
+<p>This module is distributed under the GNU General Public License, version
+3 (GPLv3). The full text of this license is given in the <code class="docutils literal notranslate"><span class="pre">LICENSE</span></code>
+file.</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">User manual</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="user/attach-alto.html">Attach ALTO to a media</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user/attach-alto.html#manual-import">Manual import</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/attach-alto.html#batch-import">Batch import</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="user/attach-alto.html#options">Options</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user/resource-page-block.html">Resource page block</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/solr.html">Integration with Solr</a></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="user/attach-alto.html" class="btn btn-neutral float-right" title="Attach ALTO to a media" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, BibLibre.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
