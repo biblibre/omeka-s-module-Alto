@@ -1,0 +1,125 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2024, BibLibre
+# This file is distributed under the same license as the Alto package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Alto\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-18 14:29+0100\n"
+"PO-Revision-Date: 2024-11-18 15:07+0100\n"
+"Last-Translator: Julian Maurice <julian.maurice@biblibre.com>\n"
+"Language-Team: fr <LL@li.org>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Generated-By: Babel 2.16.0\n"
+"X-Generator: Poedit 3.5\n"
+
+#: ../../user/attach-alto.rst:2
+msgid "Attach ALTO to a media"
+msgstr "Attacher ALTO à un média"
+
+#: ../../user/attach-alto.rst:5
+msgid "Manual import"
+msgstr "Import manuel"
+
+#: ../../user/attach-alto.rst:7
+msgid ""
+"To attach an ALTO document to a media, go the media page in the admin interface."
+msgstr ""
+"Pour attacher un document ALTO à un média, allez sur la page du média dans "
+"l'interface d'administration."
+
+#: ../../user/attach-alto.rst:11
+msgid "Click on the \"ALTO\" tab."
+msgstr "Cliquez sur l'onglet \"ALTO\"."
+
+#: ../../user/attach-alto.rst:15
+msgid "Click on \"Attach an ALTO document\". A sidebar will open."
+msgstr "Cliquez sur \"Attacher un document ALTO\". Une barre latérale s'ouvrira."
+
+#: ../../user/attach-alto.rst:19
+msgid "Select your ALTO file and submit the form."
+msgstr "Sélectionnez votre fichier ALTO et soumettez le formulaire."
+
+#: ../../user/attach-alto.rst:24
+msgid "Batch import"
+msgstr "Import par log"
+
+#: ../../user/attach-alto.rst:26
+msgid ""
+"To import multiple ALTO files at once, click on \"ALTO import\" in the admin "
+"navigation menu."
+msgstr ""
+"Pour importer plusieurs fichiers ALTO en une seule fois, cliquez sur \"Import "
+"ALTO\" dans le menu de navigation d'administration."
+
+#: ../../user/attach-alto.rst:30
+msgid "From there, you have to select all the ALTO files that you want to import."
+msgstr ""
+"Depuis cette page, vous devez sélectionner tous les fichiers ALTO que vous "
+"voulez importer."
+
+#: ../../user/attach-alto.rst:33
+msgid ""
+"ALTO files will be attached to media whose filename (or \"source\") match the "
+"ALTO filename. For instance, an ALTO file named ``PAGE0001.xml`` will be "
+"attached to the media whose filename matches ``PAGE0001.{extension}`` (eg. "
+"``PAGE0001.png``)."
+msgstr ""
+"Les fichiers ALTO seront attachés aux médias dont le nom de fichier (ou "
+"\"source\") correspond au nom du fichier ALTO. Par exemple, un fichier ALTO "
+"nommé ``PAGE0001.xml`` sera attaché au média dont le nom de fichier correspond "
+"à ``PAGE0001.{extension}`` (ex: ``PAGE0001.png``)."
+
+#: ../../user/attach-alto.rst:37
+msgid "If no media or several media match, the ALTO file is not imported."
+msgstr ""
+"Si aucun média ou plusieurs médias correspondent, le fichier ALTO n'est pas "
+"importé."
+
+#: ../../user/attach-alto.rst:40
+msgid "Options"
+msgstr "Options"
+
+#: ../../user/attach-alto.rst:42
+msgid "Replace existing ALTO documents"
+msgstr "Remplacer les documents ALTO existants"
+
+#: ../../user/attach-alto.rst:43
+msgid ""
+"If checked, matching media which already have an ALTO document attached will "
+"have their ALTO document replaced"
+msgstr ""
+"Si coché, les médias correspondants qui ont déjà un document ALTO attaché "
+"auront leur document ALTO remplacé"
+
+#: ../../user/resource-page-block.rst:2
+msgid "Resource page block"
+msgstr "Bloc de page de ressource"
+
+#: ../../user/resource-page-block.rst:4
+msgid ""
+"You can display the ALTO text content on the site media page by configuring "
+"resource page blocks (requires Omeka ≥ 4.0.0)."
+msgstr ""
+"Vous pouvez afficher le contenu texte ALTO sur la page publique du média en "
+"configurant les blocs de page de ressource (nécessite Omeka ≥ 4.0.0)."
+
+#: ../../user/solr.rst:2
+msgid "Integration with Solr"
+msgstr "Intégration avec Solr"
+
+#: ../../user/solr.rst:4
+msgid ""
+"If you have the `Solr module <https://github.com/biblibre/omeka-s-module-"
+"Solr>`__ a new mapping source will be available (\"Media: ALTO text content\")."
+msgstr ""
+"Si vous avez le `module Solr <https://github.com/biblibre/omeka-s-module-"
+"Solr>`__ une nouvelle source de correspondance sera disponible (\"Média: "
+"contenu texte ALTO\")."

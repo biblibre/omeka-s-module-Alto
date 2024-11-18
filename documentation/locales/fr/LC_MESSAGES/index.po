@@ -1,0 +1,199 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2024, BibLibre
+# This file is distributed under the same license as the Alto package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Alto\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-18 15:08+0100\n"
+"PO-Revision-Date: 2024-11-18 15:09+0100\n"
+"Last-Translator: Julian Maurice <julian.maurice@biblibre.com>\n"
+"Language-Team: fr <LL@li.org>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Generated-By: Babel 2.16.0\n"
+"X-Generator: Poedit 3.5\n"
+
+#: ../../index.rst:73
+msgid "User manual"
+msgstr "Manuel utilisateur"
+
+#: ../../index.rst:2
+msgid "Alto (Omeka S module)"
+msgstr "Alto (module Omeka S)"
+
+#: ../../index.rst:4
+msgid ""
+"This Omeka S module allows to attach ALTO (XML) files to media. The ALTO "
+"content can then be used in several ways (for display, search, ...)."
+msgstr ""
+"Ce module Omeka S permet d'attacher des fichiers ALTO (XML) aux médias. "
+"Le contenu ALTO peut ensuite être utilisé de plusieurs manières (pour "
+"l'affichage, la recherche, ...)."
+
+#: ../../index.rst:8
+msgid "Requirements"
+msgstr "Pré-requis"
+
+#: ../../index.rst:10
+msgid "Omeka S ≥ 3.2.0 (or ≥ 4.0.0 if you need resource page blocks)"
+msgstr ""
+"Omeka S ≥ 3.2.0 (ou ≥ 4.0.0 si vous avez besoin des blocs de page de "
+"ressource)"
+
+#: ../../index.rst:11
+msgid ""
+"For search capabilities, modules `Search <https://github.com/biblibre/"
+"omeka-s-module-Search>`__ and `Solr <https://github.com/biblibre/omeka-s-"
+"module-Solr>`__"
+msgstr ""
+"Pour les capacités de recherche, les modules `Search <https://github.com/"
+"biblibre/omeka-s-module-Search>`__ et `Solr <https://github.com/biblibre/"
+"omeka-s-module-Solr>`__"
+
+#: ../../index.rst:16
+msgid "Quick start"
+msgstr "Démarrage rapide"
+
+#: ../../index.rst:18
+msgid ""
+"`Install the module <https://omeka.org/s/docs/user-manual/modules/"
+"#adding-modules-to-omeka-s>`__"
+msgstr ""
+"`Installer le module <https://omeka.org/s/docs/user-manual/modules/"
+"#adding-modules-to-omeka-s>`__"
+
+#: ../../index.rst:20
+msgid ""
+"In the admin interface, on a media page there is a new tab \"ALTO\". "
+"Click the tab, then click on \"Attach an ALTO document\". In the "
+"sidebar, select an ALTO file and submit the form."
+msgstr ""
+"Dans l'interface d'administration, sur la page d'un média il y a un "
+"nouvel onglet \"ALTO\". Cliquez sur l'onglet, puis cliquez sur "
+"\"Attacher un document ALTO\". Dans la barre latérale, sélectionnez un "
+"fichier ALTO et soumettez le formulaire."
+
+#: ../../index.rst:23
+msgid ""
+"To learn how to exploit ALTO files (display, search, ...), go to the "
+"table of contents at the end of this page."
+msgstr ""
+"Pour découvrir comment exploiter les fichiers ALTO (affichage, "
+"recherche, ...), rendez vous à la table des matières à la fin de cette "
+"page."
+
+#: ../../index.rst:27
+msgid "Features"
+msgstr "Fonctionnalités"
+
+#: ../../index.rst:29
+msgid "Import ALTO files one by one or by batch"
+msgstr "Import de fichiers ALTO un par un ou par lot"
+
+#: ../../index.rst:30
+msgid ""
+"Resource page block rendering ALTO content as plain text (requires Omeka "
+"S ≥ 4.0.0)"
+msgstr ""
+"Bloc de page de ressource affichant le contenu ALTO en texte brut "
+"(nécessite Omeka S ≥ 4.0.0)"
+
+#: ../../index.rst:32
+msgid ""
+"Integration with the `Solr <https://github.com/biblibre/omeka-s-module-"
+"Solr>`__ module (makes the ALTO plain text content searchable)"
+msgstr ""
+"Intégration avec le module `Solr <https://github.com/biblibre/omeka-s-"
+"module-Solr>`__ (rend le contenu texte brut ALTO cherchable)"
+
+#: ../../index.rst:37
+msgid "Caveats / Known problems"
+msgstr "Avertissements / Problèmes connus"
+
+#: ../../index.rst:39
+msgid ""
+"Batch import is very limited at the moment: it requires that the ALTO "
+"file has the same basename than the media filename (for instance, "
+"``PAGE0001.png`` and ``PAGE00001.xml``). This should change in a future "
+"version"
+msgstr ""
+"L'import par lot est très limité pour le moment: il nécessite que le "
+"fichier ALTO porte le même nom que le fichier du média (par exemple, "
+"``PAGE0001.png`` et ``PAGE00001.xml``). Ça devrait changer dans une "
+"version future"
+
+#: ../../index.rst:45
+msgid "How to contribute"
+msgstr "Comment contribuer"
+
+#: ../../index.rst:47
+msgid ""
+"If you found a bug or want to suggest a new feature, please `open an "
+"issue <https://github.com/biblibre/omeka-s-module-Alto/issues/new>`__."
+msgstr ""
+"Si vous avez trouvé un `bug` ou voulez suggérer une nouvelle "
+"fonctionnalité, merci d'`ouvrir un ticket <https://github.com/biblibre/"
+"omeka-s-module-Alto/issues/new>`__."
+
+#: ../../index.rst:49
+msgid ""
+"If you made a modification to the module (bugfix, enhancement, ...) and "
+"want to make it available to everyone, `open a pull request <https://"
+"docs.github.com/en/pull-requests/collaborating-with-pull-requests/"
+"proposing-changes-to-your-work-with-pull-requests/creating-a-pull-"
+"request>`__. To increase its chances of being reviewed and merged, "
+"please keep the pull request small:"
+msgstr ""
+"Si vous avez modifié le module (correction de bug, amélioration, ...) et "
+"voulez en faire profiter tout le monde, `ouvrez une pull request "
+"<https://docs.github.com/en/pull-requests/collaborating-with-pull-"
+"requests/proposing-changes-to-your-work-with-pull-requests/creating-a-"
+"pull-request>`__. Pour améliorer ses chances d'être examinée et "
+"intégrée, faites en sorte que la *pull request* reste petite:"
+
+#: ../../index.rst:55
+msgid ""
+"only one change per pull request (eg. do not mix a bugfix with a new "
+"feature),"
+msgstr ""
+"seulement un changement par *pull request* (ex: ne mélangez pas une "
+"correction de bug avec une nouvelle fonctionnalité),"
+
+#: ../../index.rst:57
+msgid "include only necessary changes (eg. no code style changes)"
+msgstr ""
+"n'incluez que les changements nécessaires (ex: pas de changements dans "
+"le style du code)"
+
+#: ../../index.rst:60
+msgid "Contributors / Sponsors"
+msgstr "Contributeurs / Sponsors"
+
+#: ../../index.rst:62
+msgid "This module was sponsored by:"
+msgstr "Ce module a été sponsorisé par:"
+
+#: ../../index.rst:64
+msgid "`Médiathèques d'Orléans <https://mediatheques.orleans.fr/>`__"
+msgstr "`Médiathèques d'Orléans <https://mediatheques.orleans.fr/>`__"
+
+#: ../../index.rst:67
+msgid "License"
+msgstr "Licence"
+
+#: ../../index.rst:69
+msgid ""
+"This module is distributed under the GNU General Public License, version "
+"3 (GPLv3). The full text of this license is given in the ``LICENSE`` "
+"file."
+msgstr ""
+"Ce module est distribué sous licence publique générale GNU, version 3 "
+"(GPLv3). Le texte complet de cette licence est donné dans le fichier "
+"``LICENSE``."
