@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Alto\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-18 14:29+0100\n"
-"PO-Revision-Date: 2024-11-18 15:07+0100\n"
+"POT-Creation-Date: 2024-11-20 10:26+0100\n"
+"PO-Revision-Date: 2024-11-20 10:27+0100\n"
 "Last-Translator: Julian Maurice <julian.maurice@biblibre.com>\n"
 "Language-Team: fr <LL@li.org>\n"
 "Language: fr\n"
@@ -78,20 +78,30 @@ msgstr ""
 "à ``PAGE0001.{extension}`` (ex: ``PAGE0001.png``)."
 
 #: ../../user/attach-alto.rst:37
+msgid ""
+"For files with multiple extensions (eg. ``PAGE.0001.alto.xml``), extensions are "
+"removed one by one until a match is found (eg. ``PAGE.0001.alto`` then "
+"``PAGE.0001`` then ``PAGE``)."
+msgstr ""
+"Pour les fichiers avec plusieurs extensions (ex: ``PAGE.0001.alto.xml``), les "
+"extensions sont retirées une par une jusqu'à ce qu'une correspondance soit "
+"trouvée (ex: ``PAGE.0001.alto`` puis ``PAGE.0001`` puis ``PAGE``)."
+
+#: ../../user/attach-alto.rst:41
 msgid "If no media or several media match, the ALTO file is not imported."
 msgstr ""
 "Si aucun média ou plusieurs médias correspondent, le fichier ALTO n'est pas "
 "importé."
 
-#: ../../user/attach-alto.rst:40
+#: ../../user/attach-alto.rst:44
 msgid "Options"
 msgstr "Options"
 
-#: ../../user/attach-alto.rst:42
+#: ../../user/attach-alto.rst:46
 msgid "Replace existing ALTO documents"
 msgstr "Remplacer les documents ALTO existants"
 
-#: ../../user/attach-alto.rst:43
+#: ../../user/attach-alto.rst:47
 msgid ""
 "If checked, matching media which already have an ALTO document attached will "
 "have their ALTO document replaced"
