@@ -110,6 +110,9 @@
 <p>ALTO files will be attached to media whose filename (or “source”) match the ALTO filename.
 For instance, an ALTO file named <code class="docutils literal notranslate"><span class="pre">PAGE0001.xml</span></code> will be attached to the
 media whose filename matches <code class="docutils literal notranslate"><span class="pre">PAGE0001.{extension}</span></code> (eg. <code class="docutils literal notranslate"><span class="pre">PAGE0001.png</span></code>).</p>
+<p>For files with multiple extensions (eg. <code class="docutils literal notranslate"><span class="pre">PAGE.0001.alto.xml</span></code>),
+extensions are removed one by one until a match is found (eg.
+<code class="docutils literal notranslate"><span class="pre">PAGE.0001.alto</span></code> then <code class="docutils literal notranslate"><span class="pre">PAGE.0001</span></code> then <code class="docutils literal notranslate"><span class="pre">PAGE</span></code>).</p>
 <p>If no media or several media match, the ALTO file is not imported.</p>
 </div>
 <section id="options">

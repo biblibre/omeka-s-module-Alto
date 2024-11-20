@@ -34,6 +34,10 @@ From there, you have to select all the ALTO files that you want to import.
    For instance, an ALTO file named ``PAGE0001.xml`` will be attached to the
    media whose filename matches ``PAGE0001.{extension}`` (eg. ``PAGE0001.png``).
 
+   For files with multiple extensions (eg. ``PAGE.0001.alto.xml``),
+   extensions are removed one by one until a match is found (eg.
+   ``PAGE.0001.alto`` then ``PAGE.0001`` then ``PAGE``).
+
    If no media or several media match, the ALTO file is not imported.
 
 Options

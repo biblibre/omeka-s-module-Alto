@@ -109,6 +109,9 @@
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>Les fichiers ALTO seront attachés aux médias dont le nom de fichier (ou « source ») correspond au nom du fichier ALTO. Par exemple, un fichier ALTO nommé <code class="docutils literal notranslate"><span class="pre">PAGE0001.xml</span></code> sera attaché au média dont le nom de fichier correspond à <code class="docutils literal notranslate"><span class="pre">PAGE0001.{extension}</span></code> (ex: <code class="docutils literal notranslate"><span class="pre">PAGE0001.png</span></code>).</p>
+<p>For files with multiple extensions (eg. <code class="docutils literal notranslate"><span class="pre">PAGE.0001.alto.xml</span></code>),
+extensions are removed one by one until a match is found (eg.
+<code class="docutils literal notranslate"><span class="pre">PAGE.0001.alto</span></code> then <code class="docutils literal notranslate"><span class="pre">PAGE.0001</span></code> then <code class="docutils literal notranslate"><span class="pre">PAGE</span></code>).</p>
 <p>Si aucun média ou plusieurs médias correspondent, le fichier ALTO n’est pas importé.</p>
 </div>
 <section id="options">
