@@ -24,22 +24,39 @@ class BatchImport extends AbstractJob
         $replace = $this->getArg('replace', false);
 
         foreach ($files as $file) {
-            $query = $em->createQuery('SELECT m.id FROM Omeka\Entity\Media m WHERE REGEXP(m.source, :regexp) = 1');
-            $basename = pathinfo($file['name'], PATHINFO_FILENAME);
-            $regexp = '(^|/)' . preg_quote($basename) . "\\.[a-zA-Z0-9]+$";
-            $query->setParameter('regexp', $regexp);
+            // If the filename has multiple extensions (eg. "file.alto.xml"),
+            // try all prefixes, from longest to shortest, until we find a
+            // match (eg. "file.alto", then "file")
+            $basename = pathinfo($file['name'], PATHINFO_BASENAME);
+            $prefixes = [];
+            while ('' !== ($prefix = pathinfo($basename, PATHINFO_FILENAME)) && $prefix !== $basename) {
+                $prefixes[] = $prefix;
+                $basename = $prefix;
+            }
 
-            try {
-                $mediaId = $query->getSingleScalarResult();
-            } catch (NoResultException $e) {
+            $medias = [];
+            foreach ($prefixes as $prefix) {
+                $query = $em->createQuery('SELECT m.id, m.source FROM Omeka\Entity\Media m WHERE REGEXP(m.source, :regexp) = 1');
+                $regexp = '(^|/)' . preg_quote($prefix) . "\\.[a-zA-Z0-9]+$";
+                $query->setParameter('regexp', $regexp);
+
+                $medias = $query->getScalarResult();
+                if (!empty($medias)) {
+                    break;
+                }
+            }
+
+            if (empty($medias)) {
                 $logger->err(sprintf('No media found for file %s', $file['name']));
                 continue;
-            } catch (NonUniqueResultException $e) {
+            } elseif (count($medias) > 1) {
                 $logger->err(sprintf('More than one media found for file %s', $file['name']));
                 continue;
             }
 
-            $logger->info(sprintf('File %s matched media %d', $file['name'], $mediaId));
+            $media = reset($medias);
+            $mediaId = $media['id'];
+            $logger->info(sprintf('File %s matched media %d (%s)', $file['name'], $mediaId, $media['source']));
 
             $altoDocuments = $api->search('alto_documents', ['media_id' => $mediaId])->getContent();
             if (empty($altoDocuments)) {

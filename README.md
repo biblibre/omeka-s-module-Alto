@@ -30,7 +30,8 @@ content can then be used in several ways (for display, search, ...).
 
 - Batch import is very limited at the moment: it requires that the ALTO file
   has the same basename than the media filename (for instance, `PAGE0001.png`
-  and `PAGE00001.xml`). This should change in a future version
+  and `PAGE00001.xml` or `PAGE00001.alto.xml`). This should change in a future
+  version
 
 ## How to contribute
 
