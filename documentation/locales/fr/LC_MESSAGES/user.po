@@ -49,7 +49,7 @@ msgstr "Sélectionnez votre fichier ALTO et soumettez le formulaire."
 
 #: ../../user/attach-alto.rst:24
 msgid "Batch import"
-msgstr "Import par log"
+msgstr "Import par lot"
 
 #: ../../user/attach-alto.rst:26
 msgid ""
