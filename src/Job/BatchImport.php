@@ -23,6 +23,13 @@ class BatchImport extends AbstractJob
 
         $replace = $this->getArg('replace', false);
 
+        $altoDocumentsAdded = 0;
+        $altoDocumentsReplaced = 0;
+        $altoDocumentsNotReplaced = 0;
+        $altoDocumentsNoMediaFound = 0;
+        $altoDocumentsSeveralMediaFound = 0;
+        $altoDocumentsErrors = 0;
+
         foreach ($files as $file) {
             // If the filename has multiple extensions (eg. "file.alto.xml"),
             // try all prefixes, from longest to shortest, until we find a
@@ -48,9 +55,11 @@ class BatchImport extends AbstractJob
 
             if (empty($medias)) {
                 $logger->err(sprintf('No media found for file %s', $file['name']));
+                ++ $altoDocumentsNoMediaFound;
                 continue;
             } elseif (count($medias) > 1) {
                 $logger->err(sprintf('More than one media found for file %s', $file['name']));
+                ++ $altoDocumentsSeveralMediaFound;
                 continue;
             }
 
@@ -64,8 +73,10 @@ class BatchImport extends AbstractJob
                     $xml = file_get_contents($file['path']);
                     $api->create('alto_documents', ['o:media_id' => $mediaId, 'o:xml' => $xml]);
                     $logger->info(sprintf('Attached %s to media %d', $file['name'], $mediaId));
+                    ++ $altoDocumentsAdded;
                 } catch (\Exception $e) {
                     $logger->err(sprintf('Failed to attach %s to media %d: %s', $file['name'], $mediaId, $e));
+                    ++ $altoDocumentsErrors;
                 }
             } elseif ($replace) {
                 $altoDocument = reset($altoDocuments);
@@ -74,12 +85,27 @@ class BatchImport extends AbstractJob
                     $xml = file_get_contents($file['path']);
                     $api->update('alto_documents', $altoDocument->id(), ['o:xml' => $xml], [], ['isPartial' => true]);
                     $logger->info(sprintf('Attached %s to media %d (replacement)', $file['name'], $mediaId));
+                    ++ $altoDocumentsReplaced;
                 } catch (\Exception $e) {
                     $logger->err(sprintf('Failed to attach %s to media %d: %s', $file['name'], $mediaId, $e));
+                    ++ $altoDocumentsErrors;
                 }
             } else {
                 $logger->info(sprintf('Media %d already has an ALTO document attached', $mediaId));
+                ++ $altoDocumentsNotReplaced;
             }
         }
+
+        $logger->info(sprintf(
+            'Job ended normally. Summary: %d attached (new: %d, replaced: %d), %d not attached (no media found: %d, several media found: %d, error: %d, replace option not set: %d)',
+            $altoDocumentsAdded + $altoDocumentsReplaced,
+            $altoDocumentsAdded,
+            $altoDocumentsReplaced,
+            $altoDocumentsNoMediaFound + $altoDocumentsSeveralMediaFound + $altoDocumentsErrors + $altoDocumentsNotReplaced,
+            $altoDocumentsNoMediaFound,
+            $altoDocumentsSeveralMediaFound,
+            $altoDocumentsErrors,
+            $altoDocumentsNotReplaced,
+        ));
     }
 }
