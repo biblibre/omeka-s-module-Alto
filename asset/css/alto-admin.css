@@ -1,5 +1,5 @@
 #alto textarea {
-    white-space: pre;
+    white-space: pre-wrap;
     resize: vertical;
     width: 100%;
 }
