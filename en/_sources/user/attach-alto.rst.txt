@@ -20,6 +20,9 @@ Manual import
 
    .. image:: image/attach-alto-media-alto-submitted.png
 
+.. note::
+   Unlike batch import, no control is made on filename.
+
 Batch import
 ------------
 
