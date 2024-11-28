@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Alto\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-20 10:26+0100\n"
-"PO-Revision-Date: 2024-11-20 10:27+0100\n"
+"POT-Creation-Date: 2024-11-28 08:43+0100\n"
+"PO-Revision-Date: 2024-11-28 08:46+0100\n"
 "Last-Translator: Julian Maurice <julian.maurice@biblibre.com>\n"
 "Language-Team: fr <LL@li.org>\n"
 "Language: fr\n"
@@ -48,10 +48,16 @@ msgid "Select your ALTO file and submit the form."
 msgstr "Sélectionnez votre fichier ALTO et soumettez le formulaire."
 
 #: ../../user/attach-alto.rst:24
+msgid "Unlike batch import, no control is made on filename."
+msgstr ""
+"Contrairement à l'import par lot, aucun contrôle n'est fait sur le nom de "
+"fichier."
+
+#: ../../user/attach-alto.rst:27
 msgid "Batch import"
 msgstr "Import par lot"
 
-#: ../../user/attach-alto.rst:26
+#: ../../user/attach-alto.rst:29
 msgid ""
 "To import multiple ALTO files at once, click on \"ALTO import\" in the admin "
 "navigation menu."
@@ -59,13 +65,13 @@ msgstr ""
 "Pour importer plusieurs fichiers ALTO en une seule fois, cliquez sur \"Import "
 "ALTO\" dans le menu de navigation d'administration."
 
-#: ../../user/attach-alto.rst:30
+#: ../../user/attach-alto.rst:33
 msgid "From there, you have to select all the ALTO files that you want to import."
 msgstr ""
 "Depuis cette page, vous devez sélectionner tous les fichiers ALTO que vous "
 "voulez importer."
 
-#: ../../user/attach-alto.rst:33
+#: ../../user/attach-alto.rst:36
 msgid ""
 "ALTO files will be attached to media whose filename (or \"source\") match the "
 "ALTO filename. For instance, an ALTO file named ``PAGE0001.xml`` will be "
@@ -77,7 +83,7 @@ msgstr ""
 "nommé ``PAGE0001.xml`` sera attaché au média dont le nom de fichier correspond "
 "à ``PAGE0001.{extension}`` (ex: ``PAGE0001.png``)."
 
-#: ../../user/attach-alto.rst:37
+#: ../../user/attach-alto.rst:40
 msgid ""
 "For files with multiple extensions (eg. ``PAGE.0001.alto.xml``), extensions are "
 "removed one by one until a match is found (eg. ``PAGE.0001.alto`` then "
@@ -87,21 +93,21 @@ msgstr ""
 "extensions sont retirées une par une jusqu'à ce qu'une correspondance soit "
 "trouvée (ex: ``PAGE.0001.alto`` puis ``PAGE.0001`` puis ``PAGE``)."
 
-#: ../../user/attach-alto.rst:41
+#: ../../user/attach-alto.rst:44
 msgid "If no media or several media match, the ALTO file is not imported."
 msgstr ""
 "Si aucun média ou plusieurs médias correspondent, le fichier ALTO n'est pas "
 "importé."
 
-#: ../../user/attach-alto.rst:44
+#: ../../user/attach-alto.rst:47
 msgid "Options"
 msgstr "Options"
 
-#: ../../user/attach-alto.rst:46
+#: ../../user/attach-alto.rst:49
 msgid "Replace existing ALTO documents"
 msgstr "Remplacer les documents ALTO existants"
 
-#: ../../user/attach-alto.rst:47
+#: ../../user/attach-alto.rst:50
 msgid ""
 "If checked, matching media which already have an ALTO document attached will "
 "have their ALTO document replaced"
