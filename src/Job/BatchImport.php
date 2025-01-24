@@ -13,7 +13,7 @@ class BatchImport extends AbstractJob
     {
         $serviceLocator = $this->getServiceLocator();
         $api = $serviceLocator->get('Omeka\ApiManager');
-        $em = $serviceLocator->get('Omeka\EntityManager');
+        $connection = $serviceLocator->get('Omeka\Connection');
         $logger = $serviceLocator->get('Omeka\Logger');
 
         $files = $this->getArg('files', []);
@@ -43,11 +43,9 @@ class BatchImport extends AbstractJob
 
             $medias = [];
             foreach ($prefixes as $prefix) {
-                $query = $em->createQuery('SELECT m.id, m.source FROM Omeka\Entity\Media m WHERE REGEXP(m.source, :regexp) = 1');
                 $regexp = '(^|/)' . preg_quote($prefix) . "\\.[a-zA-Z0-9]+$";
-                $query->setParameter('regexp', $regexp);
 
-                $medias = $query->getScalarResult();
+                $medias = $connection->fetchAllAssociative('SELECT id, source FROM media WHERE source REGEXP ?', [$regexp]);
                 if (!empty($medias)) {
                     break;
                 }
