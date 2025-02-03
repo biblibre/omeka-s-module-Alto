@@ -30,6 +30,14 @@ class BatchImport extends AbstractJob
         $altoDocumentsSeveralMediaFound = 0;
         $altoDocumentsErrors = 0;
 
+        $mediasByBasename = [];
+        $result = $connection->executeQuery('SELECT id, source FROM media');
+        while ($row = $result->fetchAssociative()) {
+            $basename = pathinfo($row['source'], PATHINFO_FILENAME);
+            $mediasByBasename[$basename] ??= [];
+            $mediasByBasename[$basename][] = $row['id'];
+        }
+
         foreach ($files as $file) {
             // If the filename has multiple extensions (eg. "file.alto.xml"),
             // try all prefixes, from longest to shortest, until we find a
@@ -41,29 +49,33 @@ class BatchImport extends AbstractJob
                 $basename = $prefix;
             }
 
-            $medias = [];
+            $mediaIds = [];
             foreach ($prefixes as $prefix) {
-                $regexp = '(^|/)' . preg_quote($prefix) . "\\.[a-zA-Z0-9]+$";
-
-                $medias = $connection->fetchAllAssociative('SELECT id, source FROM media WHERE source REGEXP ?', [$regexp]);
-                if (!empty($medias)) {
+                $mediaIds = $mediasByBasename[$prefix] ?? [];
+                if (!empty($mediaIds)) {
                     break;
                 }
             }
 
-            if (empty($medias)) {
+            if (empty($mediaIds)) {
                 $logger->err(sprintf('No media found for file %s', $file['name']));
                 ++ $altoDocumentsNoMediaFound;
                 continue;
-            } elseif (count($medias) > 1) {
+            } elseif (count($mediaIds) > 1) {
                 $logger->err(sprintf('More than one media found for file %s', $file['name']));
                 ++ $altoDocumentsSeveralMediaFound;
                 continue;
             }
 
-            $media = reset($medias);
-            $mediaId = $media['id'];
-            $logger->info(sprintf('File %s matched media %d (%s)', $file['name'], $mediaId, $media['source']));
+            $mediaId = reset($mediaIds);
+            try {
+                $media = $api->read('media', $mediaId)->getContent();
+            } catch (\Exception $e) {
+                $logger->err(sprintf('Error while fetching matched media %d: %s', $mediaId, $e->getMessage()));
+                continue;
+            }
+
+            $logger->info(sprintf('File %s matched media %d (%s)', $file['name'], $mediaId, $media->source()));
 
             $altoDocuments = $api->search('alto_documents', ['media_id' => $mediaId])->getContent();
             if (empty($altoDocuments)) {
