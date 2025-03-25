@@ -39,7 +39,15 @@ class AltoDocumentAdapter extends AbstractEntityAdapter
         }
 
         if ($this->shouldHydrate($request, 'o:xml')) {
-            $entity->setXml($request->getValue('o:xml'));
+            $settings = $this->getServiceLocator()->get('Omeka\Settings');
+            $xml = $request->getValue('o:xml');
+            if ($settings->get('alto_compression', false)) {
+                $entity->setXml(null);
+                $entity->setXmlCompressed(isset($xml) ? gzencode($xml) : null);
+            } else {
+                $entity->setXml($xml);
+                $entity->setXmlCompressed(null);
+            }
         }
     }
 
@@ -53,7 +61,7 @@ class AltoDocumentAdapter extends AbstractEntityAdapter
             $errorStore->addError('o:media_id', 'This media is already associated with an ALTO document');
         }
 
-        $xml = $entity->getXml();
+        $xml = $entity->getXml() ?? $entity->getXmlCompressed();
         if ($xml === null || trim($xml) === '') {
             $errorStore->addError('o:xml', 'XML cannot be empty');
         }

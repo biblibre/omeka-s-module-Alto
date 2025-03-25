@@ -20,7 +20,7 @@ class AltoDocumentRepresentation extends AbstractEntityRepresentation
 
         return [
             'o:media' => $this->media()->getReference(),
-            'o:xml' => $entity->getXml(),
+            'o:xml' => $this->xml(),
             'o:created' => $this->getDateTime($entity->getCreated()),
             'o:modified' => $entity->getModified() ? $this->getDateTime($entity->getModified()) : null,
         ];
@@ -45,9 +45,19 @@ class AltoDocumentRepresentation extends AbstractEntityRepresentation
         return $this->getAdapter('media')->getRepresentation($this->resource->getMedia());
     }
 
-    public function xml()
+    public function xml(): ?string
     {
-        return $this->resource->getXml();
+        $xml = $this->resource->getXml();
+        if (isset($xml)) {
+            return $xml;
+        }
+
+        $xmlCompressed = $this->resource->getXmlCompressed();
+        if (isset($xmlCompressed)) {
+            return gzdecode($xmlCompressed);
+        }
+
+        return null;
     }
 
     public function created()

@@ -3,6 +3,7 @@
 namespace Alto;
 
 use Alto\Reader\AltoReader;
+use Composer\Semver\Comparator;
 use Omeka\Module\AbstractModule;
 use Omeka\Permissions\Acl;
 use Laminas\EventManager\Event;
@@ -50,7 +51,8 @@ class Module extends AbstractModule
             CREATE TABLE alto_document (
                 id INT AUTO_INCREMENT NOT NULL,
                 media_id INT NOT NULL,
-                xml LONGTEXT NOT NULL,
+                xml LONGTEXT DEFAULT NULL,
+                xml_compressed LONGBLOB DEFAULT NULL,
                 created DATETIME NOT NULL,
                 modified DATETIME DEFAULT NULL,
                 UNIQUE INDEX UNIQ_8FFEC1E4EA9FDD75 (media_id),
@@ -66,8 +68,71 @@ class Module extends AbstractModule
 
     public function uninstall(ServiceLocatorInterface $serviceLocator)
     {
-        $connection = $services->get('Omeka\Connection');
+        $connection = $serviceLocator->get('Omeka\Connection');
         $connection->executeStatement('DROP TABLE alto_document');
+    }
+
+    public function upgrade($oldVersion, $newVersion, ServiceLocatorInterface $serviceLocator)
+    {
+        $connection = $serviceLocator->get('Omeka\Connection');
+
+        if (Comparator::lessThan($oldVersion, '0.2.0')) {
+            $connection->executeStatement('ALTER TABLE alto_document ADD COLUMN xml_compressed LONGBLOB NULL AFTER xml');
+            $connection->executeStatement('ALTER TABLE alto_document MODIFY COLUMN xml LONGTEXT NULL');
+        }
+    }
+
+    public function getConfigForm(PhpRenderer $renderer)
+    {
+        $services = $this->getServiceLocator();
+        $formElementManager = $services->get('FormElementManager');
+        $settings = $services->get('Omeka\Settings');
+
+        $form = $formElementManager->get(Form\ConfigForm::class);
+        $form->setData([
+            'alto_compression' => $settings->get('alto_compression'),
+        ]);
+        $form->prepare();
+
+        return $renderer->formCollection($form);
+    }
+
+    public function handleConfigForm(AbstractController $controller)
+    {
+        $services = $this->getServiceLocator();
+        $formElementManager = $services->get('FormElementManager');
+        $settings = $services->get('Omeka\Settings');
+        $form = $formElementManager->get(Form\ConfigForm::class);
+        $form->setData($controller->params()->fromPost());
+        if (!$form->isValid()) {
+            $controller->messenger()->addFormErrors($form);
+            return false;
+        }
+
+        $data = $form->getData();
+
+        $start_compression_job = $data['alto_start_compression_job'];
+        unset($data['alto_start_compression_job']);
+
+        foreach ($data as $key => $value) {
+            $settings->set($key, $value);
+        }
+
+        if ($start_compression_job) {
+            $job = $controller->jobDispatcher()->dispatch(Job\UpdateCompression::class);
+            $message = new \Omeka\Stdlib\Message(
+                'Compression job started. %s', // @translate
+                sprintf(
+                    '<a href="%s">%s</a>',
+                    $controller->url()->fromRoute('admin/id', ['controller' => 'job', 'id' => $job->getId()]),
+                    $controller->translate('See job details'),
+                )
+            );
+            $message->setEscapeHtml(false);
+            $controller->messenger()->addSuccess($message);
+        }
+
+        return true;
     }
 
     public function attachListeners(SharedEventManagerInterface $sharedEventManager)
@@ -153,7 +218,10 @@ class Module extends AbstractModule
         $field = $event->getParam('field');
 
         if ($field === 'media/alto_text_content') {
-            $em = $this->getServiceLocator()->get('Omeka\EntityManager');
+            $services = $this->getServiceLocator();
+            $em = $services->get('Omeka\EntityManager');
+            $apiAdapters = $services->get('Omeka\ApiAdapterManager');
+            $altoDocumentAdapter = $apiAdapters->get('alto_documents');
 
             $query = $em->createQuery('SELECT d FROM Alto\Entity\AltoDocument d JOIN d.media m WHERE m.item = :item_id');
             $query->setParameter('item_id', $item->id());
@@ -161,9 +229,13 @@ class Module extends AbstractModule
 
             $texts = [];
             foreach ($altoDocuments as $altoDocument) {
-                $text = AltoReader::extractTextFromXml($altoDocument->getXml());
-                if ($text !== '') {
-                    $texts[] = $text;
+                $altoDocumentRepresentation = $altoDocumentAdapter->getRepresentation($altoDocument);
+                $xml = $altoDocumentRepresentation->xml();
+                if (isset($xml)) {
+                    $text = AltoReader::extractTextFromXml($xml);
+                    if ($text !== '') {
+                        $texts[] = $text;
+                    }
                 }
                 $em->detach($altoDocument);
             }
