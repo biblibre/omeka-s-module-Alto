@@ -28,9 +28,14 @@ class AltoDocument extends AbstractEntity
     protected $media;
 
     /**
-     * @Column(type="text")
+     * @Column(type="text", nullable=true)
      */
     protected $xml;
+
+    /**
+     * @Column(type="blob", nullable=true)
+     */
+    protected $xmlCompressed;
 
     /**
      * @Column(type="datetime")
@@ -57,7 +62,7 @@ class AltoDocument extends AbstractEntity
         return $this->media;
     }
 
-    public function setXml(string $xml): void
+    public function setXml(?string $xml): void
     {
         $this->xml = $xml;
     }
@@ -65,6 +70,21 @@ class AltoDocument extends AbstractEntity
     public function getXml(): ?string
     {
         return $this->xml;
+    }
+
+    public function setXmlCompressed(?string $xmlCompressed): void
+    {
+        $this->xmlCompressed = $xmlCompressed;
+    }
+
+    public function getXmlCompressed(): ?string
+    {
+        if (is_resource($this->xmlCompressed)) {
+            rewind($this->xmlCompressed);
+            return stream_get_contents($this->xmlCompressed);
+        }
+
+        return $this->xmlCompressed;
     }
 
     public function getCreated(): ?DateTime
