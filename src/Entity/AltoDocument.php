@@ -22,7 +22,7 @@ class AltoDocument extends AbstractEntity
     protected $id;
 
     /**
-     * @OneToOne(targetEntity="Omeka\Entity\Media", orphanRemoval=true)
+     * @OneToOne(targetEntity="Omeka\Entity\Media")
      * @JoinColumn(onDelete="CASCADE", nullable=false)
      */
     protected $media;
